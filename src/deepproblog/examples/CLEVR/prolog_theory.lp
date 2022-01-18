@@ -65,7 +65,7 @@ obj(Z,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2) :- relate_front(T,T1), Z is T+1,
 obj(Z,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2) :- relate_behind(T,T1), Z is T+1, obj(0,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2), obj(T1,ID1,SIZE1,COLOR1,MATERIAL1,SHAPE1,X11,Y11,X21,Y21), ID=\=ID1, Y2=<Y21.
 
 % Count rule
-int(T,N) :- count(T,T1), aggregate_all(count, obj(T1,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2), N).
+int(T,N) :- count(T,T1), aggregate_all(count, ID, obj(T1,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2), N).
 
 % Exist rule
 bool(T,true) :- exist(T,T1), obj(T1,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2).

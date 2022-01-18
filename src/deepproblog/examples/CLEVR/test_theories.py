@@ -19,12 +19,13 @@ total = 0
 
 questionCounter = 0
 
-with open("theory.lp", "r") as fp:
+with open("prolog_theory.lp", "r") as fp:
     theory = fp.read()
 
 facts = json_to_facts('./scene_encoding_det_epoch200_conf25.json')
 
 prolog = Prolog()
+
 
 for q in tqdm(questions):
 
@@ -62,6 +63,10 @@ for q in tqdm(questions):
     else:
         incorrect+=1
     total+=1
+    
+    if total == 1000:
+        break
+    
 
 print(f"Correct: {correct}/{total} ({correct / total * 100:.2f})")
 print(f"Incorrect: {incorrect}/{total} ({incorrect / total * 100:.2f})")
