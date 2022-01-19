@@ -7,7 +7,7 @@ from tqdm import tqdm
 import sys
 
 from pyswip import Prolog
-
+import clingo
 
 with open("CLEVR_v1.0/questions/CLEVR_val_questions.json") as fp:
     questions = json.load(fp)["questions"]
@@ -17,15 +17,13 @@ incorrect = 0
 invalid = 0
 total = 0
 
-questionCounter = 0
-
 with open("prolog_theory.lp", "r") as fp:
     theory = fp.read()
 
 facts = json_to_facts('./scene_encoding_det_epoch200_conf25.json')
 
 prolog = Prolog()
-
+clingo = clingo.Control()
 
 for q in tqdm(questions):
 
@@ -38,6 +36,10 @@ for q in tqdm(questions):
     program += '\n'
     program += incumbent_facts
     program += '\n'
+    
+    print(q)
+    print(incumbent_facts)
+    print(func_to_asp(q["program"])) 
     
     
     with open("incumbent_program.lp", "w") as ip:
@@ -61,12 +63,12 @@ for q in tqdm(questions):
     if str(correct_answer) == str(prolog_answer):
         correct+=1
     else:
+        
         incorrect+=1
     total+=1
     
-    if total == 1000:
+    if total == 10:
         break
-    
 
 print(f"Correct: {correct}/{total} ({correct / total * 100:.2f})")
 print(f"Incorrect: {incorrect}/{total} ({incorrect / total * 100:.2f})")

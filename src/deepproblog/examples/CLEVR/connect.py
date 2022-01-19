@@ -54,7 +54,7 @@ class ClevrDataset(Dataset):
     def to_query(self, i):
         # l = Constant(self.data[i][1])
         return Query(
-            Term("ans", None)
+            Term("ans", Term('X'))
         )
 
     def __getitem__(self, idx):
