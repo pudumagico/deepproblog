@@ -95,6 +95,10 @@ int(-1,-1).
 int(-1,-1).
 % :- dynamic label/4.
 label(-1,-1,-1,-1).
+% :- dynamic end/1.
+end(-2).
+% :- dynamic scene/2.
+scene(-1,-1).
 
 % Scene rule
 obj(Z,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2) :- scene(T,0), Z is T+1, obj(0,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2).

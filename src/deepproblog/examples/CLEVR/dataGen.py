@@ -22,7 +22,7 @@ def termPath2dataList(termPath, img_size, domain):
     # feed each image into yolo
     term, path = termPath.split(' ')
     dataloader = create_data_loader(path, 1, img_size, 1)
-
+    
     for _, img in tqdm(dataloader):
         # img = Variable(img.type(torch.FloatTensor))
         img = img.to("cuda")

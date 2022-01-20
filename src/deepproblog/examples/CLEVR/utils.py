@@ -25,12 +25,7 @@ def build_dictionaries(clevr_dir):
         raise ValueError('Answer {} does not belong to a known class'.format(answer))
         
         
-    cached_dictionaries = os.path.join(clevr_dir, 'questions', 'CLEVR_built_dictionaries.pkl')
-    if os.path.exists(cached_dictionaries):
-        print('==> using cached dictionaries: {}'.format(cached_dictionaries))
-        with open(cached_dictionaries, 'rb') as f:
-            return pickle.load(f)
-            
+
     quest_to_ix = {}
     answ_to_ix = {}
     answ_ix_to_class = {}
@@ -39,7 +34,7 @@ def build_dictionaries(clevr_dir):
     with open(json_train_filename, "r") as f:
         questions = json.load(f)['questions']
         for q in tqdm(questions):
-            question = tokenize(q['question'])
+            question = q['question']
             answer = q['answer']
             #pdb.set_trace()
             for word in question:
@@ -53,8 +48,7 @@ def build_dictionaries(clevr_dir):
                     answ_ix_to_class[ix] = compute_class(a)
 
     ret = (quest_to_ix, answ_to_ix, answ_ix_to_class)    
-    with open(cached_dictionaries, 'wb') as f:
-        pickle.dump(ret, f)
+
 
     return ret
 
@@ -286,4 +280,4 @@ for x in lst:
     Size, Color, Material, Shape = re.sub(r"([A-Z])", r" \1", x).split()
     real_list.append(f'obj(B,{s2l["shapes"][Shape]},{s2l["sizes"][Size]},{s2l["colors"][Color]},{s2l["materials"][Material]},X1,Y1,X2,Y2)')
 
-print(str(f'{real_list}').replace("'", '"'))
+# print(str(f'{real_list}').replace("'", '"'))
