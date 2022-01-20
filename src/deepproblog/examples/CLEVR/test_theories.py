@@ -31,7 +31,7 @@ prolog = Prolog()
 
 ######################### Prolog ############################
 
-print('testing theory for prolog')
+print('TESTING THEORY FOR PROLOG')
 
 correct = 0
 incorrect = 0
@@ -39,7 +39,7 @@ invalid = 0
 total = 0
 
 
-for q in tqdm(questions):
+for q in questions:
 
     img_index = str(q['image_index'])
     incumbent_facts = parse_facts(facts, img_index)
@@ -68,26 +68,26 @@ for q in tqdm(questions):
         prolog_answer = list(prolog.query('ans(X)'))[0]['X']
     else:
         prolog_answer = None
-    print(correct_answer, prolog_answer)
 
-#     if str(correct_answer) == str(prolog_answer):
-#         correct+=1
-#     else:
-        
-#         incorrect+=1
+    if str(correct_answer) == str(prolog_answer):
+        correct+=1
+    else:
+        # print(q)
+        # print(correct_answer, prolog_answer)
+        incorrect+=1
     total+=1
     
-    if total == 10:
+    if total == 100:
         break
 
-# print(f"Correct: {correct}/{total} ({correct / total * 100:.2f})")
-# print(f"Incorrect: {incorrect}/{total} ({incorrect / total * 100:.2f})")
-# print(f"Invalid: {invalid}/{total} ({invalid / total * 100:.2f})")
+print(f"Correct: {correct}/{total} ({correct / total * 100:.2f})")
+print(f"Incorrect: {incorrect}/{total} ({incorrect / total * 100:.2f})")
+print(f"Invalid: {invalid}/{total} ({invalid / total * 100:.2f})")
 
 
 ######################### Problog ############################
 
-print('testing theory for problog')
+print('TESTING THEORY FOR PROBLOG')
 
 
 correct = 0
@@ -96,7 +96,7 @@ invalid = 0
 total = 0
 
 
-for q in tqdm(questions):
+for q in questions:
 
     img_index = str(q['image_index'])
     incumbent_facts = parse_facts(facts, img_index)
@@ -117,33 +117,31 @@ for q in tqdm(questions):
     if correct_answer == 'yes':
         correct_answer = 'true'
     
-    
-#     if list(prolog.query('ans(X)')):
-#         prolog_answer = list(prolog.query('ans(X)'))[0]['X']
-#     else:
-#         prolog_answer = None
-    print(correct_answer, problog_answer)
 
-#     if str(correct_answer) == str(prolog_answer):
-#         correct+=1
-#     else:
-        
-#         incorrect+=1
+    problog_answer =  str(list(problog_answer.keys())[0]).split('(')[1].split(')')[0]
+    
+
+    if str(correct_answer) == str(problog_answer):
+        correct+=1
+    else:
+        # print(q)
+        # print(correct_answer, problog_answer)
+        incorrect+=1
     total+=1
     
-    if total == 10:
+    if total == 100:
         break
 
-# print(f"Correct: {correct}/{total} ({correct / total * 100:.2f})")
-# print(f"Incorrect: {incorrect}/{total} ({incorrect / total * 100:.2f})")
-# print(f"Invalid: {invalid}/{total} ({invalid / total * 100:.2f})")
+print(f"Correct: {correct}/{total} ({correct / total * 100:.2f})")
+print(f"Incorrect: {incorrect}/{total} ({incorrect / total * 100:.2f})")
+print(f"Invalid: {invalid}/{total} ({invalid / total * 100:.2f})")
 
 
 
 
-######################### ASP ############################
+# ######################### ASP ############################
 
-print('testing theory for asp')
+print('TESTING THEORY FOR ASP')
 
 correct = 0
 incorrect = 0
@@ -169,29 +167,29 @@ for q in tqdm(questions):
     if correct_answer == 'yes':
         correct_answer = 'true'
     
+    
     ctl = clingo.Control()
     ctl.add("base", [], program)
     ctl.ground([("base", [])])
-    ctl.solve(on_model=lambda m: print("correct answer: {}, asp answer: {}".format(correct_answer, m)))
-    
-    
-#     if list(prolog.query('ans(X)')):
-#         prolog_answer = list(prolog.query('ans(X)'))[0]['X']
-#     else:
-#         prolog_answer = None
-#     # print(correct_answer, prolog_answer)
-
-#     if str(correct_answer) == str(prolog_answer):
-#         correct+=1
-#     else:
+    # ctl.solve(on_model=on_model(x))
+    # print(x)
+    with ctl.solve(yield_=True) as handle:
+        for model in handle:
+            if model.symbols(shown=True):
+                asp_answer = str(model.symbols(shown=True)[0]).split('(')[1].split(')')[0]
+            
+           
+    if str(correct_answer) == str(asp_answer):
+        correct+=1
+    else:
         
-#         incorrect+=1
+        incorrect+=1
     total+=1
     
-    if total == 10:
+    if total == 100:
         break
 
-# print(f"Correct: {correct}/{total} ({correct / total * 100:.2f})")
-# print(f"Incorrect: {incorrect}/{total} ({incorrect / total * 100:.2f})")
-# print(f"Invalid: {invalid}/{total} ({invalid / total * 100:.2f})")
+print(f"Correct: {correct}/{total} ({correct / total * 100:.2f})")
+print(f"Incorrect: {incorrect}/{total} ({incorrect / total * 100:.2f})")
+print(f"Invalid: {invalid}/{total} ({invalid / total * 100:.2f})")
 

@@ -1,50 +1,50 @@
-% #input unique/2.
-% #input relate_left/2.
-% #input relate_right/2.
-% #input relate_front/2.
-% #input relate_behind/2.
-% #input count/2.
-% #input exist/2.
-% #input filter_large/2.
-% #input filter_small/2.
-% #input filter_gray/2.
-% #input filter_red/2.
-% #input filter_blue/2.
-% #input filter_green/2.
-% #input filter_brown/2.
-% #input filter_purple/2.
-% #input filter_cyan/2.
-% #input filter_yellow/2.
-% #input filter_metal/2.
-% #input filter_rubber/2.
-% #input filter_sphere/2.
-% #input filter_cylinder/2.
-% #input filter_cube/2.
-% #input query_size/2.
-% #input query_color/2.
-% #input query_material/2.
-% #input query_shape/2.
-% #input and/3.
-% #input or/2.
-% #input or/3.
-% #input same_size/2.
-% #input same_color/2.
-% #input same_material/2.
-% #input same_shape/2.
-% #input equal_integer/3.
-% #input less_than/3.
-% #input greater_than/3.
-% #input equal_size/3.
-% #input equal_color/3.
-% #input equal_material/3.
-% #input equal_shape/3.
-% #input size/2.
-% #input color/2.
-% #input material/2.
-% #input shape/2.
-% #input bool/2.
-% #input int/2.
-% #input label/4.
+#defined unique/2.
+#defined relate_left/2.
+#defined relate_right/2.
+#defined relate_front/2.
+#defined relate_behind/2.
+#defined count/2.
+#defined exist/2.
+#defined filter_large/2.
+#defined filter_small/2.
+#defined filter_gray/2.
+#defined filter_red/2.
+#defined filter_blue/2.
+#defined filter_green/2.
+#defined filter_brown/2.
+#defined filter_purple/2.
+#defined filter_cyan/2.
+#defined filter_yellow/2.
+#defined filter_metal/2.
+#defined filter_rubber/2.
+#defined filter_sphere/2.
+#defined filter_cylinder/2.
+#defined filter_cube/2.
+#defined query_size/2.
+#defined query_color/2.
+#defined query_material/2.
+#defined query_shape/2.
+#defined and/3.
+#defined or/2.
+#defined or/3.
+#defined same_size/2.
+#defined same_color/2.
+#defined same_material/2.
+#defined same_shape/2.
+#defined equal_integer/3.
+#defined less_than/3.
+#defined greater_than/3.
+#defined equal_size/3.
+#defined equal_color/3.
+#defined equal_material/3.
+#defined equal_shape/3.
+#defined size/2.
+#defined color/2.
+#defined material/2.
+#defined shape/2.
+#defined bool/2.
+#defined int/2.
+#defined label/4.
 
 
 % Show only ans atom
