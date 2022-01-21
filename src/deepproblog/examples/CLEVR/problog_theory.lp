@@ -118,6 +118,7 @@ obj(Z,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2) :- relate_behind(T,T1), Z is T+1
 
 % Count rule
 int(T,N,ID,1) :- count(T,T1), obj(T1,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2).
+int(T,0,0,0) :- count(T,T1), \+ obj(T1,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2).
 int(T, sum<X>) :- count(T,T1), int(T,N,ID,X).
 
 % Exist rule
@@ -192,3 +193,5 @@ ans(V) :- end(T), bool(T,V).
 ans(V) :- end(T), int(T,V).
 
 obj(0,ID,SIZE,COLOR,MATERIAL,SHAPE,X1,Y1,X2,Y2) :- label(0,img,ID,obj(ID,SHAPE,SIZE,COLOR,MATERIAL,X1,Y1,X2,Y2)).
+
+
