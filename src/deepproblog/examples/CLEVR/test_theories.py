@@ -75,9 +75,12 @@ for q in questions:
         # print(q)
         # print(correct_answer, prolog_answer)
         incorrect+=1
+
+        
+        # print(total)
     total+=1
     
-    if total == 100:
+    if total == 2000:
         break
 
 print(f"Correct: {correct}/{total} ({correct / total * 100:.2f})")
@@ -127,9 +130,12 @@ for q in questions:
         # print(q)
         # print(correct_answer, problog_answer)
         incorrect+=1
+        # print(func_to_asp(q["program"]))
+        # print(incumbent_facts)
+        # print(total)
     total+=1
-    
-    if total == 100:
+
+    if total == 2000:
         break
 
 print(f"Correct: {correct}/{total} ({correct / total * 100:.2f})")
@@ -149,7 +155,7 @@ invalid = 0
 total = 0
 
 
-for q in tqdm(questions):
+for q in questions:
 
     img_index = str(q['image_index'])
     incumbent_facts = parse_facts(facts, img_index)
@@ -182,11 +188,13 @@ for q in tqdm(questions):
     if str(correct_answer) == str(asp_answer):
         correct+=1
     else:
-        
+        # print(q)
+        # print(correct_answer, asp_answer)
         incorrect+=1
+        # print(total)
     total+=1
-    
-    if total == 100:
+
+    if total == 2000:
         break
 
 print(f"Correct: {correct}/{total} ({correct / total * 100:.2f})")
